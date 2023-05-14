@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Target index{% endblock %}
+
+{% block body %}
+    <h1>Target index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Par</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for target in targets %}
+            <tr>
+                <td>{{ target.id }}</td>
+                <td>{{ target.name }}</td>
+                <td>{{ target.par }}</td>
+                <td>
+                    <a href="{{ path('app_target_show', {'id': target.id}) }}">show</a>
+                    <a href="{{ path('app_target_edit', {'id': target.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_target_new') }}">Create new</a>
+{% endblock %}
