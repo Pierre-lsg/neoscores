@@ -35,6 +35,19 @@
 						</li>
 					</ul>
 				</li>
+				{% if is_granted('ROLE_USER') %}
+				    <li class="nav-item">
+					    <a class="nav-link active" href="javascript: document.formSignout.submit()">Logout</a>
+				    </li>
+		            <div style="display: none;">
+                        <form name="formSignout" action="{{ path('app_logout')}}" method="post">
+                        </form>
+					</div>		
+				{% else %}
+				<li class="nav-item">
+					<a class="nav-link active" href="{{ path('app_login')}}">Login</a>
+				</li>
+				{% endif %}
 			</ul>
 		</div>
 	</div>
