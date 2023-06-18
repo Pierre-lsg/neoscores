@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Club index
+{% endblock %}
+
+{% block body %}
+	<h1>Club index</h1>
+
+	<div>{{ club.name }}</div>
+	<div>{{ club.description }}</div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Firstname</th>
+				<th>Lastname</th>
+				<th>Nickname</th>
+				<th>Team</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for member in club.members %}
+				<tr>
+					<td>{{ member.id }}</td>
+					<td>{{ member.firstName }}</td>
+					<td>{{ member.lastName }}</td>
+					<td>{{ member.nickName }}</td>
+					<td>{{ member.team }}</td>
+					<td>
+                    <a href="{{ path('app_member_edit', {'id': member.id}) }}">edit</a>
+                    </td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="6">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+    <a href="{{ path('app_member_new', {'club_id': club.id}) }}" class="btn btn-primary" role="button">Create new member</a>
+{% endblock %}

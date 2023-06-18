@@ -11,6 +11,7 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Par</th>
+                <th>Rule</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -20,6 +21,7 @@
                 <td>{{ target.id }}</td>
                 <td>{{ target.name }}</td>
                 <td>{{ target.par }}</td>
+                <td>{{ target.rule }}</td>
                 <td>
                     <a href="{{ path('app_target_show', {'id': target.id}) }}">show</a>
                     <a href="{{ path('app_target_edit', {'id': target.id}) }}">edit</a>

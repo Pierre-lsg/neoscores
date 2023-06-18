@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Team;
+use App\Entity\Club;
 use App\Form\TeamType;
 use App\Repository\TeamRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -10,9 +11,18 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+use Doctrine\ORM\EntityManagerInterface;
+
 #[Route('/team')]
 class TeamController extends AbstractController
 {
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
     #[Route('/', name: 'app_team_index', methods: ['GET'])]
     public function index(TeamRepository $teamRepository): Response
     {
@@ -25,6 +35,16 @@ class TeamController extends AbstractController
     public function new(Request $request, TeamRepository $teamRepository): Response
     {
         $team = new Team();
+
+        // Si l'id d'un blub est passé, alors pré-charger le champ 'Club'
+        if ($request->query->get('club_id') != null)
+        {
+            $em = $this->entityManager;
+            $team->setClub($em->getRepository(Club::class)->find(
+                $request->query->get('club_id')
+            ));
+        }
+
         $form = $this->createForm(TeamType::class, $team);
         $form->handleRequest($request);
 

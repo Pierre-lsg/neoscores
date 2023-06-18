@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! ✅</h1>
+
+    List of actors objects :
+    <ul>
+        <li><a href="{{ path('app_club_index') }}">Club</a></li>
+        <li><a href="{{ path('app_team_index') }}">Team</a></li>
+        <li><a href="{{ path('app_member_index') }}">Member</a></li>
+    </ul>
+    
+    List of competitions objects :
+    <ul>
+        <li><a href="{{ path('app_rule_index') }}">Rule</a></li>
+        <li><a href="{{ path('app_target_index') }}">Target</a></li>
+    </ul>
+    
+</div>
+{% endblock %}

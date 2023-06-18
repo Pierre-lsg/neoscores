@@ -23,6 +23,8 @@
                 <td>
                     <a href="{{ path('app_club_show', {'id': club.id}) }}">show</a>
                     <a href="{{ path('app_club_edit', {'id': club.id}) }}">edit</a>
+                    <a href="{{ path('app_club_teams_index', {'id': club.id}) }}">teams</a>
+                    <a href="{{ path('app_club_members_index', {'id': club.id}) }}">members</a>
                 </td>
             </tr>
         {% else %}
@@ -33,5 +35,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_club_new') }}">Create new</a>
+    <a href="{{ path('app_club_new') }}" class="btn btn-primary" role="button">Create new</a>
 {% endblock %}

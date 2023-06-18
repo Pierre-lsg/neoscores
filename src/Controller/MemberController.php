@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Member;
+use App\Entity\Club;
 use App\Form\MemberType;
 use App\Repository\MemberRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -10,9 +11,18 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+use Doctrine\ORM\EntityManagerInterface;
+
 #[Route('/member')]
 class MemberController extends AbstractController
 {
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
     #[Route('/', name: 'app_member_index', methods: ['GET'])]
     public function index(MemberRepository $memberRepository): Response
     {
@@ -25,6 +35,16 @@ class MemberController extends AbstractController
     public function new(Request $request, MemberRepository $memberRepository): Response
     {
         $member = new Member();
+
+        // Si l'id d'un blub est passé, alors pré-charger le champ 'Club'
+        if ($request->query->get('club_id') != null)
+        {
+            $em = $this->entityManager;
+            $member->setClub($em->getRepository(Club::class)->find(
+                $request->query->get('club_id')
+            ));
+        }
+        
         $form = $this->createForm(MemberType::class, $member);
         $form->handleRequest($request);
 

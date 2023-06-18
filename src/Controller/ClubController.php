@@ -75,4 +75,20 @@ class ClubController extends AbstractController
 
         return $this->redirectToRoute('app_club_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/{id}/teams', name: 'app_club_teams_index', methods: ['GET'])]
+    public function listTeams(ClubRepository $clubRepository, int $id): Response
+    {
+        return $this->render('club/index.teams.html.twig', [
+            'club' => $clubRepository->find($id),
+        ]);
+    }
+
+    #[Route('/{id}/members', name: 'app_club_members_index', methods: ['GET'])]
+    public function listMembers(ClubRepository $clubRepository, int $id): Response
+    {
+        return $this->render('club/index.members.html.twig', [
+            'club' => $clubRepository->find($id),
+        ]);
+    }
 }
