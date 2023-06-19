@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Championship index{% endblock %}
+
+{% block body %}
+    <h1>Championship index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Season</th>
+                <th>IsInternal</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for championship in championships %}
+            <tr>
+                <td>{{ championship.id }}</td>
+                <td>{{ championship.name }}</td>
+                <td>{{ championship.Description }}</td>
+                <td>{{ championship.season }}</td>
+                <td>{{ championship.isInternal ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('app_championship_show', {'id': championship.id}) }}">show</a>
+                    <a href="{{ path('app_championship_edit', {'id': championship.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary m-1" href="{{ path('app_championship_new') }}">Create new</a>
+{% endblock %}
