@@ -26,6 +26,10 @@ class Competition
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateScoresPublishing = null;
 
+    #[ORM\ManyToOne(inversedBy: 'competitions')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Championship $championship = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +79,18 @@ class Competition
     public function setDateScoresPublishing(\DateTimeInterface $dateScoresPublishing): static
     {
         $this->dateScoresPublishing = $dateScoresPublishing;
+
+        return $this;
+    }
+
+    public function getChampionship(): ?Championship
+    {
+        return $this->championship;
+    }
+
+    public function setChampionship(?Championship $championship): static
+    {
+        $this->championship = $championship;
 
         return $this;
     }

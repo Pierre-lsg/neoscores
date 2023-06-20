@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ChampionshipRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ChampionshipRepository::class)]
@@ -24,6 +26,14 @@ class Championship
 
     #[ORM\Column]
     private ?bool $isInternal = null;
+
+    #[ORM\OneToMany(mappedBy: 'championship', targetEntity: Competition::class, orphanRemoval: true)]
+    private Collection $competitions;
+
+    public function __construct()
+    {
+        $this->competitions = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -76,5 +86,40 @@ class Championship
         $this->isInternal = $isInternal;
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, Competition>
+     */
+    public function getCompetitions(): Collection
+    {
+        return $this->competitions;
+    }
+
+    public function addCompetition(Competition $competition): static
+    {
+        if (!$this->competitions->contains($competition)) {
+            $this->competitions->add($competition);
+            $competition->setChampionship($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCompetition(Competition $competition): static
+    {
+        if ($this->competitions->removeElement($competition)) {
+            // set the owning side to null (unless already changed)
+            if ($competition->getChampionship() === $this) {
+                $competition->setChampionship(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
     }
 }
