@@ -15,8 +15,14 @@ class CompetitionType extends AbstractType
         $builder
             ->add('name')
             ->add('orderC')
-            ->add('dateStartCompetition', DateType::class, ['label' => 'Begin'])
-            ->add('dateScoresPublishing', DateType::class, ['label' => 'Publication'])
+            ->add('dateStartCompetition', DateType::class, [
+                'label' => 'Begin',
+                'widget' => 'single_text',
+            ])
+            ->add('dateScoresPublishing', DateType::class, [
+                'label' => 'Publication',
+                'widget' => 'single_text',
+                ])
             ->add('championship')
         ;
     }
