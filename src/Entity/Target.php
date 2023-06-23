@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TargetRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TargetRepository::class)]
@@ -22,6 +24,14 @@ class Target
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?Rule $rule = null;
+
+    #[ORM\ManyToMany(targetEntity: GolfCourse::class, mappedBy: 'targets')]
+    private Collection $golfCourses;
+
+    public function __construct()
+    {
+        $this->golfCourses = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -60,6 +70,33 @@ class Target
     public function setRule(?Rule $rule): self
     {
         $this->rule = $rule;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, GolfCourse>
+     */
+    public function getGolfCourses(): Collection
+    {
+        return $this->golfCourses;
+    }
+
+    public function addGolfCourse(GolfCourse $golfCourse): static
+    {
+        if (!$this->golfCourses->contains($golfCourse)) {
+            $this->golfCourses->add($golfCourse);
+            $golfCourse->addTarget($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGolfCourse(GolfCourse $golfCourse): static
+    {
+        if ($this->golfCourses->removeElement($golfCourse)) {
+            $golfCourse->removeTarget($this);
+        }
 
         return $this;
     }
