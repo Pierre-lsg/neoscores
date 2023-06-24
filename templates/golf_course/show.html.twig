@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}GolfCourse{% endblock %}
+
+{% block body %}
+    <h1>GolfCourse</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ golf_course.id }}</td>
+            </tr>
+            <tr>
+                <th>NumberOfTargets</th>
+                <td>{{ golf_course.numberOfTargets }}</td>
+            </tr>
+            {% for target in targets %}
+                <tr>
+                    <th>Target : {{ target.name }}</th>
+                    <td>{{ target.par }} - {{ target.rule }}</td>
+                </tr>                
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_golf_course_index') }}">back to list</a>
+
+    <a href="{{ path('app_golf_course_edit', {'id': golf_course.id}) }}">edit</a>
+
+    {{ include('golf_course/_delete_form.html.twig') }}
+{% endblock %}

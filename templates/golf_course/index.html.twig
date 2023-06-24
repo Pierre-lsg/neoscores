@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}GolfCourse index{% endblock %}
+
+{% block body %}
+    <h1>GolfCourse index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>NumberOfTargets</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for golf_course in golf_courses %}
+            <tr>
+                <td>{{ golf_course.id }}</td>
+                <td>{{ golf_course.numberOfTargets }}</td>
+                <td>
+                    <a href="{{ path('app_golf_course_show', {'id': golf_course.id}) }}">show</a>
+                    <a href="{{ path('app_golf_course_edit', {'id': golf_course.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_golf_course_new') }}">Create new</a>
+{% endblock %}

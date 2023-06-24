@@ -18,6 +18,9 @@ class GolfCourse
     #[ORM\ManyToMany(targetEntity: Target::class, inversedBy: 'golfCourses')]
     private Collection $targets;
 
+    #[ORM\Column]
+    private ?int $numberOfTargets = null;
+
     public function __construct()
     {
         $this->targets = new ArrayCollection();
@@ -48,6 +51,18 @@ class GolfCourse
     public function removeTarget(Target $target): static
     {
         $this->targets->removeElement($target);
+
+        return $this;
+    }
+
+    public function getNumberOfTargets(): ?int
+    {
+        return $this->numberOfTargets;
+    }
+
+    public function setNumberOfTargets(int $numberOfTargets): static
+    {
+        $this->numberOfTargets = $numberOfTargets;
 
         return $this;
     }
