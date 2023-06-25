@@ -6,6 +6,7 @@ use App\Repository\GolfCourseRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: GolfCourseRepository::class)]
 class GolfCourse
@@ -19,7 +20,11 @@ class GolfCourse
     private Collection $targets;
 
     #[ORM\Column]
+    #[Assert\GreaterThan(0)]
     private ?int $numberOfTargets = null;
+
+    #[ORM\Column]
+    private ?bool $isCompleted = null;
 
     public function __construct()
     {
@@ -63,6 +68,18 @@ class GolfCourse
     public function setNumberOfTargets(int $numberOfTargets): static
     {
         $this->numberOfTargets = $numberOfTargets;
+
+        return $this;
+    }
+
+    public function isIsCompleted(): ?bool
+    {
+        return $this->isCompleted;
+    }
+
+    public function setIsCompleted(bool $isCompleted): static
+    {
+        $this->isCompleted = $isCompleted;
 
         return $this;
     }

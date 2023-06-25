@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\GolfCourse;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,6 +14,9 @@ class GolfCourseType extends AbstractType
     {
         $builder
             ->add('numberOfTargets')
+            ->add('isCompleted', CheckboxType::class, [
+                'disabled' => true,
+            ])
             ->add('targets')
         ;
     }
