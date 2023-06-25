@@ -45,6 +45,7 @@ class ChampionshipController extends AbstractController
     {
         return $this->render('championship/show.html.twig', [
             'championship' => $championship,
+            'competitions' => $championship->getCompetitions(),
         ]);
     }
 

@@ -27,6 +27,12 @@
                 <th>IsInternal</th>
                 <td>{{ championship.isInternal ? 'Yes' : 'No' }}</td>
             </tr>
+            {% for competition in competitions %}
+                <tr>
+                    <th>Comptition : </th>
+                    <td><a href="{{ path('app_competition_show', { 'id': competition.id}) }}">{{ competition.name }}</a></td>
+                </tr>                
+            {% endfor %}
         </tbody>
     </table>
 

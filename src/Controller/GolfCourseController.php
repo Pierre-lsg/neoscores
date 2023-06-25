@@ -29,13 +29,7 @@ class GolfCourseController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // setIsCompleted 'true' if count(targets selected) egal to numberOfTargets
-            if (count($golfCourse->getTargets()) == $golfCourse->getNumberOfTargets()) {
-                $golfCourse->setIsCompleted(true);
-            } else {
-                $golfCourse->setIsCompleted(false);
-            }
-
+            $golfCourse->evalGolfCourse();
             $golfCourseRepository->save($golfCourse, true);
 
             return $this->redirectToRoute('app_golf_course_index', [], Response::HTTP_SEE_OTHER);
@@ -63,13 +57,7 @@ class GolfCourseController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // setIsCompleted 'true' if count(targets selected) egal to numberOfTargets
-            if (count($golfCourse->getTargets()) == $golfCourse->getNumberOfTargets()) {
-                $golfCourse->setIsCompleted(true);
-            } else {
-                $golfCourse->setIsCompleted(false);
-            }
-
+            $golfCourse->evalGolfCourse();
             $golfCourseRepository->save($golfCourse, true);
 
             return $this->redirectToRoute('app_golf_course_index', [], Response::HTTP_SEE_OTHER);

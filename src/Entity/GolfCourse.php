@@ -83,4 +83,14 @@ class GolfCourse
 
         return $this;
     }
+
+    public function evalGolfCourse()
+    {
+        if (count($this->getTargets()) == $this->getNumberOfTargets()) {
+            $this->setIsCompleted(true);
+        } else {
+            $this->setIsCompleted(false);
+        }
+
+    }
 }
