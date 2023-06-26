@@ -15,6 +15,7 @@ class TargetType extends AbstractType
             ->add('name')
             ->add('par')
             ->add('rule')
+            ->add('spot')
         ;
     }
 

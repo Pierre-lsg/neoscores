@@ -26,6 +26,9 @@ class GolfCourse
     #[ORM\Column]
     private ?bool $isCompleted = null;
 
+    #[ORM\ManyToOne(inversedBy: 'golfCourses')]
+    private ?Spot $spot = null;
+
     public function __construct()
     {
         $this->targets = new ArrayCollection();
@@ -92,5 +95,17 @@ class GolfCourse
             $this->setIsCompleted(false);
         }
 
+    }
+
+    public function getSpot(): ?Spot
+    {
+        return $this->spot;
+    }
+
+    public function setSpot(?Spot $spot): static
+    {
+        $this->spot = $spot;
+
+        return $this;
     }
 }

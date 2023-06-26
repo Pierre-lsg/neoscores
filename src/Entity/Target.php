@@ -28,6 +28,9 @@ class Target
     #[ORM\ManyToMany(targetEntity: GolfCourse::class, mappedBy: 'targets')]
     private Collection $golfCourses;
 
+    #[ORM\ManyToOne(inversedBy: 'targets')]
+    private ?Spot $spot = null;
+
     public function __construct()
     {
         $this->golfCourses = new ArrayCollection();
@@ -104,5 +107,17 @@ class Target
     public function __toString()
     {
         return $this->getName();
+    }
+
+    public function getSpot(): ?Spot
+    {
+        return $this->spot;
+    }
+
+    public function setSpot(?Spot $spot): static
+    {
+        $this->spot = $spot;
+
+        return $this;
     }
 }
