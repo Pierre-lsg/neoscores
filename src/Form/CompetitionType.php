@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Championship;
 use App\Entity\Competition;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -23,7 +25,10 @@ class CompetitionType extends AbstractType
                 'label' => 'Publication',
                 'widget' => 'single_text',
                 ])
-            ->add('championship')
+            ->add('championship', EntityType::class, [
+                'class' => Championship::class,
+                'disabled' => true,
+            ])
         ;
     }
 

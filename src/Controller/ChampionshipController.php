@@ -5,6 +5,9 @@ namespace App\Controller;
 use App\Entity\Championship;
 use App\Form\ChampionshipType;
 use App\Repository\ChampionshipRepository;
+use App\Entity\Competition;
+use App\Form\CompetitionType;
+use App\Repository\CompetitionRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -36,6 +39,26 @@ class ChampionshipController extends AbstractController
 
         return $this->renderForm('championship/new.html.twig', [
             'championship' => $championship,
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/{id}/newComp', name: 'app_comp4champ_new', methods: ['GET', 'POST'])]
+    public function newComp(Request $request, Championship $championship, CompetitionRepository $competitionRepository): Response
+    {
+        $competition = new Competition();
+        $competition ->setChampionship($championship);
+        $form = $this->createForm(CompetitionType::class, $competition);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $competitionRepository->save($competition, true);
+
+            return $this->redirectToRoute('app_championship_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('championship/new.html.twig', [
+            'competition' => $competition,
             'form' => $form,
         ]);
     }
