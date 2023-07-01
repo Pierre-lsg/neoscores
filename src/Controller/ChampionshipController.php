@@ -57,8 +57,10 @@ class ChampionshipController extends AbstractController
             return $this->redirectToRoute('app_championship_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('championship/new.html.twig', [
+        return $this->renderForm('competition/new.html.twig', [
+            'championship' => $championship,
             'competition' => $competition,
+            'mode' => 'Championship',
             'form' => $form,
         ]);
     }

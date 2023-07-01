@@ -5,7 +5,7 @@
 {% block body %}
     <h1>Edit Competition</h1>
 
-    {{ include('competition/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('competition/_form.html.twig', {'mode': 'Update', 'button_label': 'Update'}) }}
 
     <a class="btn btn-primary m-1" href="{{ path('app_competition_index') }}">back to list</a>
 

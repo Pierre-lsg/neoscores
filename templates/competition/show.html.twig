@@ -16,16 +16,12 @@
                 <td>{{ competition.name }}</td>
             </tr>
             <tr>
-                <th>OrderC</th>
-                <td>{{ competition.orderC }}</td>
-            </tr>
-            <tr>
                 <th>DateStartCompetition</th>
-                <td>{{ competition.dateStartCompetition ? competition.dateStartCompetition|date('Y-m-d') : '' }}</td>
+                <td>{{ competition.competitionAt ? competition.competitionAt|date('Y-m-d') : '' }}</td>
             </tr>
             <tr>
                 <th>DateScoresPublishing</th>
-                <td>{{ competition.dateScoresPublishing ? competition.dateScoresPublishing|date('Y-m-d') : '' }}</td>
+                <td>{{ competition.publishingScoresAt ? competition.publishingScoresAt|date('Y-m-d') : '' }}</td>
             </tr>
         </tbody>
     </table>

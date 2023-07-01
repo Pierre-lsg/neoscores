@@ -1,4 +1,19 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+    {{ form_row(form.name) }}
+    
+    {{ form_row(form.competitionAt) }}
+    
+    {{ form_row(form.publishingScoresAt) }}
+    
+    {% if mode != 'Competition' %}
+        {{ form_row(form.championship) }}
+    {% else %}
+        <select name="{{ field_name(form.championship) }}" class="form-control">
+            {% for label, value in field_choices(form.championship) %}
+                <option value="{{ value }}">{{ label }}</option>
+            {% endfor %}
+        </select>
+    {% endif %}
+    
     <button class="btn btn-primary m-1">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

@@ -36,6 +36,7 @@ class CompetitionController extends AbstractController
 
         return $this->renderForm('competition/new.html.twig', [
             'competition' => $competition,
+            'mode' => 'Competition',
             'form' => $form,
         ]);
     }

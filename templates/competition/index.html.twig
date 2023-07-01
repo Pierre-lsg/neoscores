@@ -10,9 +10,8 @@
             <tr>
                 <th>Id</th>
                 <th>Name</th>
-                <th>OrderC</th>
-                <th>DateStartCompetition</th>
-                <th>DateScoresPublishing</th>
+                <th>CompetitionAt</th>
+                <th>PublishingScoresAt</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -21,9 +20,8 @@
             <tr>
                 <td>{{ competition.id }}</td>
                 <td>{{ competition.name }}</td>
-                <td>{{ competition.orderC }}</td>
-                <td>{{ competition.dateStartCompetition ? competition.dateStartCompetition|date('Y-m-d') : '' }}</td>
-                <td>{{ competition.dateScoresPublishing ? competition.dateScoresPublishing|date('Y-m-d') : '' }}</td>
+                <td>{{ competition.competitionAt ? competition.competitionAt|date('Y-m-d') : '' }}</td>
+                <td>{{ competition.publishingScoresAt ? competition.publishingScoresAt|date('Y-m-d') : '' }}</td>
                 <td>
                     <a href="{{ path('app_competition_show', {'id': competition.id}) }}">show</a>
                     <a href="{{ path('app_competition_edit', {'id': competition.id}) }}">edit</a>

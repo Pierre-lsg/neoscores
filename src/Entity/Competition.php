@@ -17,14 +17,11 @@ class Competition
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column]
-    private ?int $orderC = null;
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $competitionAt = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $dateStartCompetition = null;
-
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $dateScoresPublishing = null;
+    private ?\DateTimeInterface $publishingScoresAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'competitions')]
     #[ORM\JoinColumn(nullable: false)]
@@ -47,38 +44,26 @@ class Competition
         return $this;
     }
 
-    public function getOrderC(): ?int
+    public function getCompetitionAt(): ?\DateTimeInterface
     {
-        return $this->orderC;
+        return $this->competitionAt;
     }
 
-    public function setOrderC(int $orderC): static
+    public function setCompetitionAt(\DateTimeInterface $competitionAt): static
     {
-        $this->orderC = $orderC;
+        $this->competitionAt = $competitionAt;
 
         return $this;
     }
 
-    public function getDateStartCompetition(): ?\DateTimeInterface
+    public function getPublishingScoresAt(): ?\DateTimeInterface
     {
-        return $this->dateStartCompetition;
+        return $this->publishingScoresAt;
     }
 
-    public function setDateStartCompetition(\DateTimeInterface $dateStartCompetition): static
+    public function setPublishingScoresAt(\DateTimeInterface $publishingScoresAt): static
     {
-        $this->dateStartCompetition = $dateStartCompetition;
-
-        return $this;
-    }
-
-    public function getDateScoresPublishing(): ?\DateTimeInterface
-    {
-        return $this->dateScoresPublishing;
-    }
-
-    public function setDateScoresPublishing(\DateTimeInterface $dateScoresPublishing): static
-    {
-        $this->dateScoresPublishing = $dateScoresPublishing;
+        $this->publishingScoresAt = $publishingScoresAt;
 
         return $this;
     }
