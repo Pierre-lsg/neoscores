@@ -13,10 +13,11 @@ class GolfCourseType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('name')
             ->add('numberOfTargets')
             ->add('isCompleted', CheckboxType::class, [
-                'disabled' => true,
-            ])
+                    'disabled' => true,
+                ])
             ->add('targets')
             ->add('spot')
         ;

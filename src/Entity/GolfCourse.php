@@ -29,9 +29,16 @@ class GolfCourse
     #[ORM\ManyToOne(inversedBy: 'golfCourses')]
     private ?Spot $spot = null;
 
+    #[ORM\OneToMany(mappedBy: 'golfcourse', targetEntity: Competition::class)]
+    private Collection $competitions;
+
+    #[ORM\Column(length: 255)]
+    private ?string $name = null;
+
     public function __construct()
     {
         $this->targets = new ArrayCollection();
+        $this->competitions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -105,6 +112,53 @@ class GolfCourse
     public function setSpot(?Spot $spot): static
     {
         $this->spot = $spot;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Competition>
+     */
+    public function getCompetitions(): Collection
+    {
+        return $this->competitions;
+    }
+
+    public function addCompetition(Competition $competition): static
+    {
+        if (!$this->competitions->contains($competition)) {
+            $this->competitions->add($competition);
+            $competition->setGolfcourse($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCompetition(Competition $competition): static
+    {
+        if ($this->competitions->removeElement($competition)) {
+            // set the owning side to null (unless already changed)
+            if ($competition->getGolfcourse() === $this) {
+                $competition->setGolfcourse(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): static
+    {
+        $this->name = $name;
 
         return $this;
     }

@@ -27,6 +27,9 @@ class Competition
     #[ORM\JoinColumn(nullable: false)]
     private ?Championship $championship = null;
 
+    #[ORM\ManyToOne(inversedBy: 'competitions')]
+    private ?GolfCourse $golfcourse = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -76,6 +79,18 @@ class Competition
     public function setChampionship(?Championship $championship): static
     {
         $this->championship = $championship;
+
+        return $this;
+    }
+
+    public function getGolfcourse(): ?GolfCourse
+    {
+        return $this->golfcourse;
+    }
+
+    public function setGolfcourse(?GolfCourse $golfcourse): static
+    {
+        $this->golfcourse = $golfcourse;
 
         return $this;
     }
