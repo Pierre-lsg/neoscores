@@ -53,13 +53,21 @@
 					</ul>
 				</li>
 				{% if is_granted('ROLE_USER') %}
-				    <li class="nav-item">
-					    <a class="nav-link active" href="javascript: document.formSignout.submit()">Logout</a>
-				    </li>
-		            <div style="display: none;">
-                        <form name="formSignout" action="{{ path('app_logout')}}" method="post">
-                        </form>
-					</div>		
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
+						<ul class="dropdown-menu">
+							<li class="nav-item">
+								<a class="dropdown-item" href="javascript: document.formSignout.submit()">Logout</a>
+								<div style="display: none;">
+									<form name="formSignout" action="{{ path('app_logout')}}" method="post">
+									</form>
+								</div>		
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{ path('app_user_index')}}">Manage account</a>
+							</li>
+						</ul>
+					</li>
 				{% else %}
 				<li class="nav-item">
 					<a class="nav-link active" href="{{ path('app_login')}}">Login</a>

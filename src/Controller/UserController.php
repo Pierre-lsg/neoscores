@@ -69,6 +69,28 @@ class UserController extends AbstractController
         ]);
     }
 
+    #[Route('/manage', name: 'app_user_manage', methods: ['GET', 'POST'])]
+    public function manage(Request $request, User $user, UserRepository $userRepository, UserPasswordHasherInterface $passwordHasher): Response
+    {
+        dd($user);
+
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user->setPassword($passwordHasher->hashPassword($user, $user->getPlainPassword()));
+            $user->eraseCredentials();
+            $userRepository->save($user, true);
+
+            return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('user/edit.html.twig', [
+            'user' => $user,
+            'form' => $form,
+        ]);
+    }
+
     #[Route('/{id}', name: 'app_user_delete', methods: ['POST'])]
     public function delete(Request $request, User $user, UserRepository $userRepository): Response
     {
