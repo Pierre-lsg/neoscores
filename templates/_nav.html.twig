@@ -58,20 +58,25 @@
 						<ul class="dropdown-menu">
 							<li class="nav-item">
 								<a class="dropdown-item" href="javascript: document.formSignout.submit()">Logout</a>
-								<div style="display: none;">
-									<form name="formSignout" action="{{ path('app_logout')}}" method="post">
-									</form>
-								</div>		
 							</li>
 							<li>
-								<a class="dropdown-item" href="{{ path('app_user_index')}}">Manage account</a>
+								<a class="dropdown-item" href="{{ path('app_account')}}">Manage account</a>
 							</li>
 						</ul>
 					</li>
+					<div style="display: none;">
+						<form name="formSignout" action="{{ path('app_logout')}}" method="post">
+						</form>
+					</div>		
 				{% else %}
 				<li class="nav-item">
 					<a class="nav-link active" href="{{ path('app_login')}}">Login</a>
 				</li>
+				{% endif %}
+				{% if is_granted('ROLE_ADMIN') %}
+					<li class="nav-item">
+						<a class="nav-link active" href="{{ path('app_user_index')}}">Admin</a>
+					</li>
 				{% endif %}
 			</ul>
 		</div>
