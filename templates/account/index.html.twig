@@ -11,9 +11,9 @@
         {{ form_widget(form.plainPassword) }}
 
         <button class="btn">{{ button_label|default('Save') }}</button>
-    {{ form_end(form) }}
-    {# Todo : before, correcting CSRF #}
-    {# {{ form_end(form, {render_rest: false}) }} #}
+
+        {{ form_row(form._token) }}
+    {{ form_end(form, {render_rest: false}) }}
 
     <a href="{{ path('app_home') }}">Back home</a>
 
