@@ -23,9 +23,10 @@ class AccountController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            //dd($user);
-            $user->setPassword($passwordHasher->hashPassword($user, $user->getPlainPassword()));
-            $user->eraseCredentials();
+            if ($user->getPlainPassword() <> '') {
+                $user->setPassword($passwordHasher->hashPassword($user, $user->getPlainPassword()));
+                $user->eraseCredentials();
+            }
             $ur->save($user, true);
 
             return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);

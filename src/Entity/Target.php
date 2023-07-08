@@ -106,7 +106,7 @@ class Target
 
     public function __toString()
     {
-        return $this->getName();
+        return $this->name . ' - ' . $this->spot;
     }
 
     public function getSpot(): ?Spot

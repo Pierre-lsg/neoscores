@@ -51,6 +51,7 @@ class GolfCourse
      */
     public function getTargets(): Collection
     {
+        //dd($this->targets);
         return $this->targets;
     }
 
@@ -148,7 +149,7 @@ class GolfCourse
 
     public function __toString()
     {
-        return $this->name;
+        return $this->name . ' - ' . $this->spot;
     }
 
     public function getName(): ?string
