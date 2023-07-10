@@ -18,7 +18,7 @@ class GolfCourse
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToMany(targetEntity: Target::class, inversedBy: 'golfCourses')]
+    #[ORM\ManyToMany(targetEntity: Target::class, inversedBy: 'golfCourses', cascade: ['persist'])]
     private Collection $targets;
 
     #[ORM\Column]

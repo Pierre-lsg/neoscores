@@ -6,7 +6,6 @@ use App\Entity\GolfCourse;
 use App\Entity\Target;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -20,11 +19,8 @@ class GolfCourseType extends AbstractType
             ->add('isCompleted', CheckboxType::class, [
                     'disabled' => true,
                 ])
-            ->add('targets', ChoiceType::class, [
-                'choices' => [
-                    new Target(),
-                    new Target(),
-                ] 
+            ->add('targets', TargetEntityType::class, [
+                'class' => Target::class,
             ])
             ->add('spot')
         ;
