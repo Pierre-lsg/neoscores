@@ -5,7 +5,6 @@ namespace App\Entity;
 use App\Repository\GolfCourseRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use App\Entity\Spot;
@@ -18,7 +17,7 @@ class GolfCourse
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToMany(targetEntity: Target::class, inversedBy: 'golfCourses', cascade: ['persist'])]
+    #[ORM\ManyToMany(targetEntity: Target::class, inversedBy: 'golfCourses')]
     private Collection $targets;
 
     #[ORM\Column]
