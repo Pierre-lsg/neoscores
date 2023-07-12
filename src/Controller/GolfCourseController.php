@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\GolfCourse;
+use App\Entity\Target;
 use App\Form\GolfCourseType;
 use App\Repository\GolfCourseRepository;
+use App\Repository\TargetRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -51,8 +53,16 @@ class GolfCourseController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_golf_course_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, GolfCourse $golfCourse, GolfCourseRepository $golfCourseRepository): Response
+    public function edit(Request $request, GolfCourse $golfCourse, GolfCourseRepository $golfCourseRepository, TargetRepository $targetRepo): Response
     {
+
+/*         $targets = $targetRepo->findAll();
+        
+        foreach ($targets as $target)
+        {
+            $golfCourse->getTargets()->add($target);
+        }
+ */ 
         $form = $this->createForm(GolfCourseType::class, $golfCourse);
         $form->handleRequest($request);
 

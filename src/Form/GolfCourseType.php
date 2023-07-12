@@ -19,11 +19,13 @@ class GolfCourseType extends AbstractType
             ->add('isCompleted', CheckboxType::class, [
                     'disabled' => true,
                 ])
-            ->add('targets', CollectionType::class, [
+/*             ->add('targets', CollectionType::class, [
                 'entry_type' => TargetType::class,
                 'entry_options' => ['label' => false],
                 'allow_add' => true,
-            ])
+                'by_reference' => false,
+            ])*/
+            ->add('targets')
             ->add('spot')
         ;
     }

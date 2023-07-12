@@ -5,17 +5,21 @@
     
     {{ form_row(form.isCompleted) }}
     
-    {# the data-index attribute is required for the JavaScript code below #}
-    <div class="form-label">Targets</div>
-    <ul class="targets"
-        data-index="{{ form.targets|length > 0 ? form.targets|last.vars.name + 1 : 0 }}"
-        data-prototype="{{ form_row(form.targets.vars.prototype)|e('html_attr') }}">
-    </ul>
-    <button type="button" class="add_item_link" data-collection-holder-class="targets">Add a target</button>
+    {{ form_row(form.targets) }}
 
-    {{ form_row(form.spot) }}
+{# 
+    <div {{ stimulus_controller('form-collection') }}
+        data-form-collection-index-value="{{ form.targets|length > 0 ? form.targets|last.vars.name + 1 : 0 }}"
+        data-form-collection-prototype-value="{{ form_widget(form.targets.vars.prototype)|e('html_attr') }}"
+    >
+        <ul {{ stimulus_target('form-collection', 'collectionContainer') }}></ul>
+        <button type="button" {{ stimulus_action('form-collection', 'addCollectionElement') }}>Add a target</button>
+    </div>
+    {{ form_row(form.spot) }}     
+#}
     
     <button class="btn btn-primary m-1">{{ button_label|default('Save') }}</button>
-    
+
+
     {{ form_row(form._token) }}
 {{ form_end(form, {render_rest: false}) }}
