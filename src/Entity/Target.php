@@ -25,7 +25,7 @@ class Target
     #[ORM\JoinColumn(nullable: false)]
     private ?Rule $rule = null;
 
-    #[ORM\ManyToMany(targetEntity: GolfCourse::class, mappedBy: 'targets')]
+    #[ORM\ManyToMany(targetEntity: GolfCourse::class, mappedBy: 'targets', cascade:['persist'])]
     private Collection $golfCourses;
 
     #[ORM\ManyToOne(inversedBy: 'targets')]

@@ -60,9 +60,10 @@ class GolfCourseController extends AbstractController
         
         foreach ($targets as $target)
         {
-            $golfCourse->getTargets()->add($target);
+           $golfCourse->getTargets()->add($target);
         }
  */ 
+
         $form = $this->createForm(GolfCourseType::class, $golfCourse);
         $form->handleRequest($request);
 
@@ -73,7 +74,9 @@ class GolfCourseController extends AbstractController
             return $this->redirectToRoute('app_golf_course_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('golf_course/edit.html.twig', [
+//        dd($form->createView());
+
+        return $this->render('golf_course/edit.html.twig', [
             'golf_course' => $golfCourse,
             'form' => $form,
         ]);
