@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\GolfCourse;
 use App\Entity\Target;
+use App\Repository\TargetRepository;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -16,22 +17,28 @@ class GolfCourseType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        // Get golf course to update
+        $gc = ($options['data']);
+
+        $spotId = $gc->getSpot()->getId();
+
         $builder
             ->add('name')
             ->add('numberOfTargets')
-            ->add('isCompleted', CheckboxType::class, [
-                    'disabled' => true,
-                ])
+            ->add('spot')
             ->add('targets', EntityType::class, [
                 'class' => Target::class,
                 'multiple' => true,
-                'query_builder' => function (EntityRepository $er): QueryBuilder {
-                    return $er->createQueryBuilder('t')
-                        ->andWhere('t.spot = 1')
+                'query_builder' => function (TargetRepository $tr) use($spotId) : QueryBuilder {
+                    return $tr->createQueryBuilder('t')
+                        ->andWhere('t.spot = :spot')
+                        ->setParameter('spot', $spotId)
                         ->orderBy('t.name', 'ASC');
                 }
                 ])
-            ->add('spot')
+            ->add('isCompleted', CheckboxType::class, [
+                'disabled' => true,
+            ])
         ;
     }
 

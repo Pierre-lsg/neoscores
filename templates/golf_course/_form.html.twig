@@ -2,11 +2,13 @@
     {{ form_row(form.name) }}
 
     {{ form_row(form.numberOfTargets) }}
-    
-    {{ form_row(form.isCompleted) }}
+   
+    {{ form_row(form.spot) }}
     
     {{ form_row(form.targets) }}
 
+    {{ form_row(form.isCompleted) }}
+    
 {# 
     <div {{ stimulus_controller('form-collection') }}
         data-form-collection-index-value="{{ form.targets|length > 0 ? form.targets|last.vars.name + 1 : 0 }}"
