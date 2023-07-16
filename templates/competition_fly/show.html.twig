@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CompetitionFly{% endblock %}
+
+{% block body %}
+    <h1>CompetitionFly</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ competition_fly.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ competition_fly.name }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_competition_fly_index') }}">back to list</a>
+
+    <a href="{{ path('app_competition_fly_edit', {'id': competition_fly.id}) }}">edit</a>
+
+    {{ include('competition_fly/_delete_form.html.twig') }}
+{% endblock %}

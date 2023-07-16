@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CompetitionFly index{% endblock %}
+
+{% block body %}
+    <h1>CompetitionFly index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for competition_fly in competition_flies %}
+            <tr>
+                <td>{{ competition_fly.id }}</td>
+                <td>{{ competition_fly.name }}</td>
+                <td>
+                    <a href="{{ path('app_competition_fly_show', {'id': competition_fly.id}) }}">show</a>
+                    <a href="{{ path('app_competition_fly_edit', {'id': competition_fly.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_competition_fly_new') }}">Create new</a>
+{% endblock %}

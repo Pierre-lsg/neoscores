@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CompetitionRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -29,6 +31,14 @@ class Competition
 
     #[ORM\ManyToOne(inversedBy: 'competitions')]
     private ?GolfCourse $golfcourse = null;
+
+    #[ORM\OneToMany(mappedBy: 'competition', targetEntity: CompetitionFly::class, orphanRemoval: true)]
+    private Collection $competitionFlies;
+
+    public function __construct()
+    {
+        $this->competitionFlies = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -93,5 +103,40 @@ class Competition
         $this->golfcourse = $golfcourse;
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, CompetitionFly>
+     */
+    public function getCompetitionFlies(): Collection
+    {
+        return $this->competitionFlies;
+    }
+
+    public function addCompetitionFly(CompetitionFly $competitionFly): static
+    {
+        if (!$this->competitionFlies->contains($competitionFly)) {
+            $this->competitionFlies->add($competitionFly);
+            $competitionFly->setCompetition($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCompetitionFly(CompetitionFly $competitionFly): static
+    {
+        if ($this->competitionFlies->removeElement($competitionFly)) {
+            // set the owning side to null (unless already changed)
+            if ($competitionFly->getCompetition() === $this) {
+                $competitionFly->setCompetition(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
     }
 }

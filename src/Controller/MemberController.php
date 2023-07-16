@@ -54,7 +54,7 @@ class MemberController extends AbstractController
             return $this->redirectToRoute('app_member_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('member/new.html.twig', [
+        return $this->render('member/new.html.twig', [
             'member' => $member,
             'form' => $form,
         ]);
@@ -80,7 +80,7 @@ class MemberController extends AbstractController
             return $this->redirectToRoute('app_member_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('member/edit.html.twig', [
+        return $this->render('member/edit.html.twig', [
             'member' => $member,
             'form' => $form,
         ]);

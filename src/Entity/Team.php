@@ -28,6 +28,9 @@ class Team
     #[ORM\OneToMany(mappedBy: 'team', targetEntity: Member::class)]
     private Collection $members;
 
+    #[ORM\ManyToOne(inversedBy: 'team')]
+    private ?CompetitionFly $competitionFly = null;
+
     public function __construct()
     {
         $this->members = new ArrayCollection();
@@ -106,5 +109,17 @@ class Team
 
     public function __tostring() {
         return $this->name;
+    }
+
+    public function getCompetitionFly(): ?CompetitionFly
+    {
+        return $this->competitionFly;
+    }
+
+    public function setCompetitionFly(?CompetitionFly $competitionFly): static
+    {
+        $this->competitionFly = $competitionFly;
+
+        return $this;
     }
 }

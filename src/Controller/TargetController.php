@@ -34,7 +34,7 @@ class TargetController extends AbstractController
             return $this->redirectToRoute('app_target_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('target/new.html.twig', [
+        return $this->render('target/new.html.twig', [
             'target' => $target,
             'form' => $form,
         ]);
@@ -60,7 +60,7 @@ class TargetController extends AbstractController
             return $this->redirectToRoute('app_target_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('target/edit.html.twig', [
+        return $this->render('target/edit.html.twig', [
             'target' => $target,
             'form' => $form,
         ]);

@@ -5,8 +5,17 @@
 {% block body %}
     <h1>Edit Championship</h1>
 
+    <h5>Editing</h5>
     {{ include('championship/_form.html.twig', {'button_label': 'Update'}) }}
 
+    <h5>Competitions list</h5>
+    {% for competition in championship.Competitions %}
+        <div>
+            <a href="{{ path('app_competition_show', { 'id': competition.id}) }}">{{ competition.name }}</a>
+            </div>
+    {% endfor %}
+
+    <h5>Other options</h5>
     <a class="btn btn-primary m-1" href="{{ path('app_comp4champ_new', {'id': championship.id}) }}">Add competition</a>
 
     <a class="btn btn-primary m-1" href="{{ path('app_championship_index') }}">back to list</a>
