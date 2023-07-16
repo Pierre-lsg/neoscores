@@ -107,7 +107,8 @@ class Team
         return $this;
     }
 
-    public function __tostring() {
+    public function __tostring(): string 
+    {
         return $this->name;
     }
 

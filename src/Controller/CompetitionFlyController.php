@@ -55,6 +55,7 @@ class CompetitionFlyController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            /* dd($competitionFly); */
             $competitionFlyRepository->save($competitionFly, true);
 
             return $this->redirectToRoute('app_competition_fly_index', [], Response::HTTP_SEE_OTHER);
