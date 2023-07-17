@@ -29,6 +29,8 @@ class AccountController extends AbstractController
             }
             $ur->save($user, true);
 
+            $this->addFlash('success', 'Your credentials have been updated !');
+
             return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
         }
 

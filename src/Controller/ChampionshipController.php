@@ -34,6 +34,8 @@ class ChampionshipController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $championshipRepository->save($championship, true);
 
+            $this->addFlash('success', 'New championship ' . $championship->getName() . ' added !');
+
             return $this->redirectToRoute('app_championship_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -82,6 +84,8 @@ class ChampionshipController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $championshipRepository->save($championship, true);
+
+            $this->addFlash('success', '\'' . $championship->getName() . '\' updated !');
 
             return $this->redirectToRoute('app_championship_index', [], Response::HTTP_SEE_OTHER);
         }
