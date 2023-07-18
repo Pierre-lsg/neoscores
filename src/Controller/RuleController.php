@@ -31,6 +31,8 @@ class RuleController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $ruleRepository->save($rule, true);
 
+            $this->addFlash('success', 'New rule ' . $rule->getName() . ' added !');
+
             return $this->redirectToRoute('app_rule_index', [], Response::HTTP_SEE_OTHER);
         }
 

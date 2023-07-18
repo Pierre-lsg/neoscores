@@ -31,6 +31,8 @@ class ClubController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $clubRepository->save($club, true);
 
+            $this->addFlash('success', 'New club ' . $club->getName() . ' added !');
+
             return $this->redirectToRoute('app_club_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -56,6 +58,8 @@ class ClubController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $clubRepository->save($club, true);
+
+            $this->addFlash('success', '\'' . $club->getName() . '\' updated !');
 
             return $this->redirectToRoute('app_club_index', [], Response::HTTP_SEE_OTHER);
         }

@@ -31,6 +31,8 @@ class TargetController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $targetRepository->save($target, true);
 
+            $this->addFlash('success', 'New target ' . $target->getName() . ' added !');
+
             return $this->redirectToRoute('app_target_index', [], Response::HTTP_SEE_OTHER);
         }
 

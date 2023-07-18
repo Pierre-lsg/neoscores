@@ -31,6 +31,8 @@ class CompetitionController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $competitionRepository->save($competition, true);
 
+            $this->addFlash('success', 'New competition ' . $competition->getName() . ' added !');
+
             return $this->redirectToRoute('app_competition_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -57,6 +59,8 @@ class CompetitionController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $competitionRepository->save($competition, true);
+
+            $this->addFlash('success', '\'' . $competition->getName() . '\' updated !');
 
             return $this->redirectToRoute('app_competition_index', [], Response::HTTP_SEE_OTHER);
         }

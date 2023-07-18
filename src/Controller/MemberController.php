@@ -36,7 +36,7 @@ class MemberController extends AbstractController
     {
         $member = new Member();
 
-        // Si l'id d'un blub est passé, alors pré-charger le champ 'Club'
+        // Si l'id d'un club est passé, alors pré-charger le champ 'Club'
         if ($request->query->get('club_id') != null)
         {
             $em = $this->entityManager;
@@ -50,6 +50,8 @@ class MemberController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $memberRepository->save($member, true);
+
+            $this->addFlash('success', 'New member ' . $member->getFirstName() . ' added !');
 
             return $this->redirectToRoute('app_member_index', [], Response::HTTP_SEE_OTHER);
         }

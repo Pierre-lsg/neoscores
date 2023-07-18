@@ -34,6 +34,8 @@ class GolfCourseController extends AbstractController
             $golfCourse->evalGolfCourse();
             $golfCourseRepository->save($golfCourse, true);
 
+            $this->addFlash('success', 'New golf course ' . $golfCourse->getName() . ' added !');
+
             return $this->redirectToRoute('app_golf_course_index', [], Response::HTTP_SEE_OTHER);
         }
 

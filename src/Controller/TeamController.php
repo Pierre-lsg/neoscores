@@ -51,6 +51,8 @@ class TeamController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $teamRepository->save($team, true);
 
+            $this->addFlash('success', 'New team ' . $team->getName() . ' added !');
+
             return $this->redirectToRoute('app_team_index', [], Response::HTTP_SEE_OTHER);
         }
 

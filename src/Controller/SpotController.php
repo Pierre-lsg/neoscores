@@ -31,6 +31,8 @@ class SpotController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $spotRepository->save($spot, true);
 
+            $this->addFlash('success', 'New spot ' . $spot->getName() . ' added !');
+
             return $this->redirectToRoute('app_spot_index', [], Response::HTTP_SEE_OTHER);
         }
 
