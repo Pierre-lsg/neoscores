@@ -19,14 +19,9 @@
 
         {{ include('_nav.html.twig') }}
 
-        {% for label, messages in app.flashes %}
-            {% for message in messages %}
-                <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
-                    {{ message }}
-                </div>
-            {% endfor %}
-        {% endfor %}
+        {{ include('_flash.html.twig') }}
 
         {% block body %}{% endblock %}
+
     </body>
 </html>
