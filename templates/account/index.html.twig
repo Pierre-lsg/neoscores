@@ -10,11 +10,11 @@
 
         {{ form_widget(form.plainPassword) }}
 
-        <button class="btn">{{ button_label|default('Save') }}</button>
+        <button class="btn btn-primary m-1">{{ button_label|default('Save') }}</button>
 
         {{ form_row(form._token) }}
     {{ form_end(form, {render_rest: false}) }}
 
-    <a href="{{ path('app_home') }}">Back home</a>
+    <a class="btn btn-primary m-1" href="{{ path('app_home') }}">Back home</a>
 
 {% endblock %}
