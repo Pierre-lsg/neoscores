@@ -9,7 +9,9 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
+                <th>Fly</th>
+                <th>Competition</th>
+                <th>Teams</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -18,6 +20,12 @@
             <tr>
                 <td>{{ competition_fly.id }}</td>
                 <td>{{ competition_fly.name }}</td>
+                <td>{{ competition_fly.competition }}</td>
+                <td>
+                    {% for team in competition_fly.teams %}
+                        {{ team.name }}    
+                    {% endfor %}
+                </td>
                 <td>
                     <a href="{{ path('app_competition_fly_show', {'id': competition_fly.id}) }}">show</a>
                     <a href="{{ path('app_competition_fly_edit', {'id': competition_fly.id}) }}">edit</a>

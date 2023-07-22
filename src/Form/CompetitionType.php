@@ -12,6 +12,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class CompetitionType extends AbstractType
 {
@@ -31,7 +32,19 @@ class CompetitionType extends AbstractType
                 'class' => Championship::class,
                 'disabled' => true,
                 ])
-// Todo : list restrictions of the 'golf course' list
+            ->add('nbTeamByFly', IntegerType::class, [
+                'attr' => [
+                    'min' => '1',
+                    'max' => '99',
+                    ]
+            ])
+            ->add('nbMemberByTeam', IntegerType::class, [
+                'attr' => [
+                    'min' => '1',
+                    'max' => '99',
+                    ]
+            ])
+            // Todo : list restrictions of the 'golf course' list
                 ->add('golfCourse', EntityType::class, [
                 'class' => GolfCourse::class,
 /*                'query_builder' => function (GolfCourseRepository $gcr): QueryBuilder {

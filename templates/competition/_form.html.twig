@@ -5,6 +5,10 @@
     
     {{ form_row(form.publishingScoresAt) }}
     
+    {{ form_row(form.nbTeamByFly) }}
+    
+    {{ form_row(form.nbMemberByTeam) }}
+    
     {% if mode != 'Competition' %}
         {{ form_row(form.championship) }}
     {% else %}

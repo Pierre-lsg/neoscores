@@ -35,6 +35,12 @@ class Competition
     #[ORM\OneToMany(mappedBy: 'competition', targetEntity: CompetitionFly::class, orphanRemoval: true)]
     private Collection $competitionFlies;
 
+    #[ORM\Column]
+    private ?int $nbTeamByFly = null;
+
+    #[ORM\Column]
+    private ?int $nbMemberByTeam = null;
+
     public function __construct()
     {
         $this->competitionFlies = new ArrayCollection();
@@ -138,5 +144,29 @@ class Competition
     public function __toString()
     {
         return $this->getName();
+    }
+
+    public function getNbTeamByFly(): ?int
+    {
+        return $this->nbTeamByFly;
+    }
+
+    public function setNbTeamByFly(int $nbTeamByFly): static
+    {
+        $this->nbTeamByFly = $nbTeamByFly;
+
+        return $this;
+    }
+
+    public function getNbMemberByTeam(): ?int
+    {
+        return $this->nbMemberByTeam;
+    }
+
+    public function setNbMemberByTeam(int $nbMemberByTeam): static
+    {
+        $this->nbMemberByTeam = $nbMemberByTeam;
+
+        return $this;
     }
 }
