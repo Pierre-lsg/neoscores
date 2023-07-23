@@ -2,27 +2,27 @@
 
 namespace App\Repository;
 
-use App\Entity\GlobalParameters;
+use App\Entity\GlobalParameter;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<GlobalParameters>
+ * @extends ServiceEntityRepository<GlobalParameter>
  *
- * @method GlobalParameters|null find($id, $lockMode = null, $lockVersion = null)
- * @method GlobalParameters|null findOneBy(array $criteria, array $orderBy = null)
- * @method GlobalParameters[]    findAll()
- * @method GlobalParameters[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method GlobalParameter|null find($id, $lockMode = null, $lockVersion = null)
+ * @method GlobalParameter|null findOneBy(array $criteria, array $orderBy = null)
+ * @method GlobalParameter[]    findAll()
+ * @method GlobalParameter[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class GlobalParametersRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, GlobalParameters::class);
+        parent::__construct($registry, GlobalParameter::class);
     }
 
 //    /**
-//     * @return GlobalParameters[] Returns an array of GlobalParameters objects
+//     * @return GlobalParameter[] Returns an array of GlobalParameter objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -36,7 +36,7 @@ class GlobalParametersRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?GlobalParameters
+//    public function findOneBySomeField($value): ?GlobalParameter
 //    {
 //        return $this->createQueryBuilder('g')
 //            ->andWhere('g.exampleField = :val')

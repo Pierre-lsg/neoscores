@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\GlobalParametersRepository;
+use App\Repository\GlobalParameterRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: GlobalParametersRepository::class)]
-class GlobalParameters
+#[ORM\Entity(repositoryClass: GlobalParameterRepository::class)]
+class GlobalParameter
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
