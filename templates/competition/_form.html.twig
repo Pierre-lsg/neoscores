@@ -9,6 +9,8 @@
     
     {{ form_row(form.nbMemberByTeam) }}
     
+    {{ form_row(form.isIndividual) }}
+    
     {% if mode != 'Competition' %}
         {{ form_row(form.championship) }}
     {% else %}

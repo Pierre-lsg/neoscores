@@ -41,6 +41,9 @@ class Competition
     #[ORM\Column]
     private ?int $nbMemberByTeam = null;
 
+    #[ORM\Column]
+    private ?bool $isIndividual = null;
+
     public function __construct()
     {
         $this->competitionFlies = new ArrayCollection();
@@ -166,6 +169,18 @@ class Competition
     public function setNbMemberByTeam(int $nbMemberByTeam): static
     {
         $this->nbMemberByTeam = $nbMemberByTeam;
+
+        return $this;
+    }
+
+    public function isIsIndividual(): ?bool
+    {
+        return $this->isIndividual;
+    }
+
+    public function setIsIndividual(bool $isIndividual): static
+    {
+        $this->isIndividual = $isIndividual;
 
         return $this;
     }

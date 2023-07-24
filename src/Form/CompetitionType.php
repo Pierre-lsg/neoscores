@@ -44,6 +44,7 @@ class CompetitionType extends AbstractType
                     'max' => '99',
                     ]
             ])
+            ->add('isIndividual')
             // Todo : list restrictions of the 'golf course' list
                 ->add('golfCourse', EntityType::class, [
                 'class' => GolfCourse::class,
