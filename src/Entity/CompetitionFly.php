@@ -25,9 +25,13 @@ class CompetitionFly
     #[ORM\OneToMany(mappedBy: 'competitionFly', targetEntity: Team::class)]
     private Collection $teams;
 
+    #[ORM\OneToMany(mappedBy: 'competitionFly', targetEntity: Member::class)]
+    private Collection $Players;
+
     public function __construct()
     {
         $this->teams = new ArrayCollection();
+        $this->Players = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -83,6 +87,36 @@ class CompetitionFly
             // set the owning side to null (unless already changed)
             if ($team->getCompetitionFly() === $this) {
                 $team->setCompetitionFly(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Member>
+     */
+    public function getPlayers(): Collection
+    {
+        return $this->Players;
+    }
+
+    public function addPlayer(Member $player): static
+    {
+        if (!$this->Players->contains($player)) {
+            $this->Players->add($player);
+            $player->setCompetitionFly($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlayer(Member $player): static
+    {
+        if ($this->Players->removeElement($player)) {
+            // set the owning side to null (unless already changed)
+            if ($player->getCompetitionFly() === $this) {
+                $player->setCompetitionFly(null);
             }
         }
 

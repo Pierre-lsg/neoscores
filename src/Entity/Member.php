@@ -28,6 +28,9 @@ class Member
     #[ORM\ManyToOne(inversedBy: 'members')]
     private ?Team $team = null;
 
+    #[ORM\ManyToOne(inversedBy: 'Players')]
+    private ?CompetitionFly $competitionFly = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -89,6 +92,18 @@ class Member
     public function setTeam(?Team $team): self
     {
         $this->team = $team;
+
+        return $this;
+    }
+
+    public function getCompetitionFly(): ?CompetitionFly
+    {
+        return $this->competitionFly;
+    }
+
+    public function setCompetitionFly(?CompetitionFly $competitionFly): static
+    {
+        $this->competitionFly = $competitionFly;
 
         return $this;
     }

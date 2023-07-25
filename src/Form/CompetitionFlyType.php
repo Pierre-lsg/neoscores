@@ -3,7 +3,9 @@
 namespace App\Form;
 
 use App\Entity\CompetitionFly;
+use App\Entity\Member;
 use App\Entity\Team;
+use App\Repository\MemberRepository;
 use App\Repository\TeamRepository;
 use Doctrine\DBAL\Query\QueryBuilder;
 use Doctrine\ORM\QueryBuilder as ORMQueryBuilder;
@@ -31,6 +33,18 @@ class CompetitionFlyType extends AbstractType
                         ->andWhere('t.Club <> :clubId')
                         ->setParameter('clubId', $clubId)
                         ->orderBy('t.name', 'ASC');
+                }
+            ]) 
+            ->add('players', EntityType::class, [
+                'class' => Member::class,
+                'choice_label' => 'firstName',
+                'multiple' => true,
+                'autocomplete' => true,
+                'query_builder' => function (MemberRepository $mr) use($clubId) : ORMQueryBuilder {
+                    return $mr->createQueryBuilder('m')
+                        ->andWhere('m.club <> :clubId')
+                        ->setParameter('clubId', $clubId)
+                        ->orderBy('m.firstName', 'ASC');
                 }
             ]) 
             /* ->add('teams', TeamsAutocompleteField::class) */
