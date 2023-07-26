@@ -20,10 +20,16 @@ class CompetitionFlyType extends AbstractType
     {
         $clubId = '9999';
 
+        $compIsIndividual = ($options['data'])->getCompetition()->isIsIndividual();
+    
         $builder
             ->add('name')
             ->add('competition')
-            ->add('teams', EntityType::class, [
+            ;
+
+        if (!$compIsIndividual)
+        {
+            $builder->add('teams', EntityType::class, [
                 'class' => Team::class,
                 'choice_label' => 'name',
                 'multiple' => true,
@@ -34,8 +40,11 @@ class CompetitionFlyType extends AbstractType
                         ->setParameter('clubId', $clubId)
                         ->orderBy('t.name', 'ASC');
                 }
-            ]) 
-            ->add('players', EntityType::class, [
+            ]); 
+        }
+        else
+        {
+            $builder->add('players', EntityType::class, [
                 'class' => Member::class,
                 'choice_label' => 'firstName',
                 'multiple' => true,
@@ -46,9 +55,8 @@ class CompetitionFlyType extends AbstractType
                         ->setParameter('clubId', $clubId)
                         ->orderBy('m.firstName', 'ASC');
                 }
-            ]) 
-            /* ->add('teams', TeamsAutocompleteField::class) */
-            ;
+            ]);
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver): void
