@@ -30,9 +30,17 @@ class Championship
     #[ORM\OneToMany(mappedBy: 'championship', targetEntity: Competition::class, orphanRemoval: true)]
     private Collection $competitions;
 
+    #[ORM\OneToMany(mappedBy: 'championship', targetEntity: Team::class)]
+    private Collection $teams;
+
+    #[ORM\OneToMany(mappedBy: 'championship', targetEntity: Member::class)]
+    private Collection $members;
+
     public function __construct()
     {
         $this->competitions = new ArrayCollection();
+        $this->teams = new ArrayCollection();
+        $this->members = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -121,5 +129,65 @@ class Championship
     public function __toString()
     {
         return $this->getName();
+    }
+
+    /**
+     * @return Collection<int, Team>
+     */
+    public function getTeams(): Collection
+    {
+        return $this->teams;
+    }
+
+    public function addTeam(Team $team): static
+    {
+        if (!$this->teams->contains($team)) {
+            $this->teams->add($team);
+            $team->setChampionship($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTeam(Team $team): static
+    {
+        if ($this->teams->removeElement($team)) {
+            // set the owning side to null (unless already changed)
+            if ($team->getChampionship() === $this) {
+                $team->setChampionship(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Member>
+     */
+    public function getMembers(): Collection
+    {
+        return $this->members;
+    }
+
+    public function addMember(Member $member): static
+    {
+        if (!$this->members->contains($member)) {
+            $this->members->add($member);
+            $member->setChampionship($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMember(Member $member): static
+    {
+        if ($this->members->removeElement($member)) {
+            // set the owning side to null (unless already changed)
+            if ($member->getChampionship() === $this) {
+                $member->setChampionship(null);
+            }
+        }
+
+        return $this;
     }
 }
