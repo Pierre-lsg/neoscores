@@ -58,11 +58,12 @@ class AppFixtures extends Fixture
             for ($j=0; $j < 4; $j++) 
             { 
                 $competitionAt = $faker->dateTimeThisYear();
+                $publishingScoreAt = $competitionAt->add(new \DateInterval('P1Y'));
 
                 $competition[$i] = new Competition();
                 $competition[$i]->setName($faker->city . '\'s competition');
                 $competition[$i]->setCompetitionAt($competitionAt);
-                $competition[$i]->setPublishingScoresAt(date_add($competitionAt, date_interval_create_from_date_string('1 day')));
+                $competition[$i]->setPublishingScoresAt($publishingScoreAt);
                 $competition[$i]->setChampionship($championship[$i]);
                 $competition[$i]->setNbTeamByFly(2);
                 $competition[$i]->setNbMemberByTeam(2);

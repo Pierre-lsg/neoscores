@@ -20,7 +20,7 @@ class ChampionshipController extends AbstractController
     public function index(ChampionshipRepository $championshipRepository): Response
     {
         return $this->render('championship/index.html.twig', [
-            'championships' => $championshipRepository->findAll(),
+            'championships' => $championshipRepository->findBy([],['season' => 'ASC']),
         ]);
     }
 
