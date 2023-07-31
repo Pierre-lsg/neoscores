@@ -36,11 +36,15 @@ class Championship
     #[ORM\OneToMany(mappedBy: 'championship', targetEntity: Member::class)]
     private Collection $members;
 
+    #[ORM\OneToMany(mappedBy: 'championship', targetEntity: Club::class)]
+    private Collection $clubs;
+
     public function __construct()
     {
         $this->competitions = new ArrayCollection();
         $this->teams = new ArrayCollection();
         $this->members = new ArrayCollection();
+        $this->clubs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -185,6 +189,36 @@ class Championship
             // set the owning side to null (unless already changed)
             if ($member->getChampionship() === $this) {
                 $member->setChampionship(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Club>
+     */
+    public function getClubs(): Collection
+    {
+        return $this->clubs;
+    }
+
+    public function addClub(Club $club): static
+    {
+        if (!$this->clubs->contains($club)) {
+            $this->clubs->add($club);
+            $club->setChampionship($this);
+        }
+
+        return $this;
+    }
+
+    public function removeClub(Club $club): static
+    {
+        if ($this->clubs->removeElement($club)) {
+            // set the owning side to null (unless already changed)
+            if ($club->getChampionship() === $this) {
+                $club->setChampionship(null);
             }
         }
 

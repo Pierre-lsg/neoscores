@@ -27,6 +27,9 @@ class Club
     #[ORM\OneToMany(mappedBy: 'club', targetEntity: Member::class)]
     private Collection $members;
 
+    #[ORM\ManyToOne(inversedBy: 'clubs')]
+    private ?Championship $championship = null;
+
     public function __construct()
     {
         $this->teams = new ArrayCollection();
@@ -124,5 +127,17 @@ class Club
 
     public function __tostring() {
         return $this->name;
+    }
+
+    public function getChampionship(): ?Championship
+    {
+        return $this->championship;
+    }
+
+    public function setChampionship(?Championship $championship): static
+    {
+        $this->championship = $championship;
+
+        return $this;
     }
 }

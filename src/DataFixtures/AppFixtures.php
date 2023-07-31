@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 use App\Entity\Championship;
 use App\Entity\Club;
 use App\Entity\Competition;
+use App\Entity\Member;
 use App\Entity\Spot;
 use App\Entity\User;
 use DateInterval;
@@ -30,16 +31,6 @@ class AppFixtures extends Fixture
             $manager->persist($user[$i]);
         }
 
-        // Creating clubs
-        for ($i=0 ; $i < 10 ; $i++)
-        {
-            $club[$i] = new Club();
-            $club[$i]->setName($faker->company());
-            $club[$i]->setDescription($faker->text(100));
-
-            $manager->persist($club[$i]);
-        }
-
         // Creating championships
         for ($i=0 ; $i < 10 ; $i++)
         {
@@ -52,7 +43,6 @@ class AppFixtures extends Fixture
             $championship[$i]->setIsInternal($faker->randomElement([true,false]));            
 
             $manager->persist($championship[$i]);
-            $manager->flush();
             
             // Creating Competitions
             for ($j=0; $j < 4; $j++) 
@@ -60,17 +50,42 @@ class AppFixtures extends Fixture
                 $competitionAt = $faker->dateTimeThisYear();
                 $publishingScoreAt = $competitionAt->add(new \DateInterval('P1Y'));
 
-                $competition[$i] = new Competition();
-                $competition[$i]->setName($faker->city . '\'s competition');
-                $competition[$i]->setCompetitionAt($competitionAt);
-                $competition[$i]->setPublishingScoresAt($publishingScoreAt);
-                $competition[$i]->setChampionship($championship[$i]);
-                $competition[$i]->setNbTeamByFly(2);
-                $competition[$i]->setNbMemberByTeam(2);
-                $competition[$i]->setIsIndividual($faker->randomElement([true,false,false]));            
+                $competition[$j] = new Competition();
+                $competition[$j]->setName($faker->city . '\'s competition');
+                $competition[$j]->setCompetitionAt($competitionAt);
+                $competition[$j]->setPublishingScoresAt($publishingScoreAt);
+                $competition[$j]->setChampionship($championship[$i]);
+                $competition[$j]->setNbTeamByFly(2);
+                $competition[$j]->setNbMemberByTeam(2);
+                $competition[$j]->setIsIndividual($faker->randomElement([true,false,false]));            
 
-                $manager->persist($competition[$i]);
+                $manager->persist($competition[$j]);
             }   
+
+            // Creating club
+            for ($j=0 ; $j < 5 ; $j++)
+            {
+                $club[$j] = new Club();
+                $club[$j]->setName($faker->company());
+                $club[$j]->setDescription($faker->text(100));
+                $club[$j]->setChampionship($championship[$i]);
+
+                $manager->persist($club[$j]);
+
+                // Creating member
+                for ($k=0 ; $k < 10 ; $k++)
+                {
+                    $member[$k] = new Member();
+                    $member[$k]->setFirstName($faker->firstName());
+                    $member[$k]->setLastName($faker->lastName());
+                    $member[$k]->setClub($club[$j]);
+                    $member[$k]->setChampionship($championship[$i]);
+
+                    $manager->persist($member[$k]);
+                }
+            }
+
+            $manager->flush();
         }
 
         // Creating spots
@@ -86,16 +101,6 @@ class AppFixtures extends Fixture
             $manager->persist($spot[$i]);
         }
 
-        // Creating Club's members
-/*         foreach ($club as $aClub) {
-            for ($j=0; $j < 10 ; $j++) { 
-                $member[$j] = new Member('');
-                $member[$j]->setFirstName($faker->firstName);
-                $member[$j]->setLastName($faker->lastName);
-                $manager->persist($member[$j]);
-            }
-        }
- */
         $manager->flush();
     }
 
