@@ -5,6 +5,7 @@ use App\Entity\Championship;
 use App\Entity\Club;
 use App\Entity\Competition;
 use App\Entity\Member;
+use App\Entity\Rule;
 use App\Entity\Spot;
 use App\Entity\User;
 use DateInterval;
@@ -100,6 +101,17 @@ class AppFixtures extends Fixture
 
             $manager->persist($spot[$i]);
         }
+
+        // Creating rules
+        $rule[0] = new Rule();
+        $rule[0]->setName('individual');
+        $rule[0]->setDescription('All hit counts');
+        $rule[1] = new Rule();
+        $rule[1]->setName('scramble');
+        $rule[1]->setDescription('The best ball of the team for each hit');
+
+        $manager->persist($rule[0]);
+        $manager->persist($rule[1]);
 
         $manager->flush();
     }
