@@ -7,6 +7,7 @@ use App\Entity\Competition;
 use App\Entity\Member;
 use App\Entity\Rule;
 use App\Entity\Spot;
+use App\Entity\Team;
 use App\Entity\User;
 use DateInterval;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -83,6 +84,18 @@ class AppFixtures extends Fixture
                     $member[$k]->setChampionship($championship[$i]);
 
                     $manager->persist($member[$k]);
+                }
+
+                // Creating team
+                for ($k=0 ; $k < 3 ; $k++)
+                {
+                    $team[$k] = new Team();
+                    $team[$k]->setName(substr($club[$j]->getName(),0,8) . ' #' . $k + 1);
+                    $team[$k]->setDescription($faker->text(20));
+                    $team[$k]->setClub($club[$j]);
+                    $team[$k]->setChampionship($championship[$i]);
+
+                    $manager->persist($team[$k]);
                 }
             }
 
