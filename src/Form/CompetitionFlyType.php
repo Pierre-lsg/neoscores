@@ -20,9 +20,11 @@ class CompetitionFlyType extends AbstractType
     {
         $clubId = '9999';
 
+        // TODO : evaluate Competition not null
         //$compIsIndividual = ($options['data'])->getCompetition()->isIsIndividual();
         $compIsIndividual = true;
 
+        // TODO : get club id
         $builder
             ->add('name')
             ->add('competition')
