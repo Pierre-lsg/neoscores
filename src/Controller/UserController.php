@@ -54,11 +54,13 @@ class UserController extends AbstractController
     #[Route('/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, User $user, UserRepository $userRepository, UserPasswordHasherInterface $passwordHasher): Response
     {
+        $user->setPlainPassword('***');
+
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($user->getPlainPassword() <> '') {
+            if ($user->getPlainPassword() <> '' || $user->getPlainPassword() <> '***' ) {
                 $user->setPassword($passwordHasher->hashPassword($user, $user->getPlainPassword()));
                 $user->eraseCredentials();
             }
