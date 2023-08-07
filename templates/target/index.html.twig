@@ -23,8 +23,8 @@
                 <td>{{ target.par }}</td>
                 <td>{{ target.rule }}</td>
                 <td>
-                    <a href="{{ path('app_target_show', {'id': target.id}) }}">show</a>
-                    <a href="{{ path('app_target_edit', {'id': target.id}) }}">edit</a>
+                    <a href="{{ path('app_target_show', {'id': target.id}) }} class='btn btn-primary btn-sm'">show</a>
+                    <a href="{{ path('app_target_edit', {'id': target.id}) }} class='btn btn-danger btn-sm'">edit</a>
                 </td>
             </tr>
         {% else %}

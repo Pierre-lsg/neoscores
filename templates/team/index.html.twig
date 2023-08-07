@@ -23,8 +23,8 @@
                 <td>{{ team.description }}</td>
                 <td>{{ team.club }}</td>
                 <td>
-                    <a href="{{ path('app_team_show', {'id': team.id}) }}">show</a>
-                    <a href="{{ path('app_team_edit', {'id': team.id}) }}">edit</a>
+                    <a href="{{ path('app_team_show', {'id': team.id}) }}" class='btn btn-primary btn-sm'>show</a>
+                    <a href="{{ path('app_team_edit', {'id': team.id}) }}" class='btn btn-danger btn-sm'>edit</a>
                 </td>
             </tr>
         {% else %}
