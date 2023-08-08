@@ -21,8 +21,8 @@
                 <td>{{ rule.name }}</td>
                 <td>{{ rule.description }}</td>
                 <td>
-                    <a href="{{ path('app_rule_show', {'id': rule.id}) }}">show</a>
-                    <a href="{{ path('app_rule_edit', {'id': rule.id}) }}">edit</a>
+                    <a href="{{ path('app_rule_show', {'id': rule.id}) }} class='btn btn-primary btn-sm'">show</a>
+                    <a href="{{ path('app_rule_edit', {'id': rule.id}) }} class='btn btn-danger btn-sm'">edit</a>
                 </td>
             </tr>
         {% else %}
