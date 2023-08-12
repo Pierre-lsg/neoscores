@@ -27,8 +27,8 @@
                 <td>{{ member.nickName }}</td>
                 <td>{{ member.club }}</td>
                 <td>
-                    <a href="{{ path('app_member_show', {'id': member.id}) }}">show</a>
-                    <a href="{{ path('app_member_edit', {'id': member.id}) }}">edit</a>
+                    <a href="{{ path('app_member_show', {'id': member.id}) }}" class='btn btn-primary btn-sm'>show</a>
+                    <a href="{{ path('app_member_edit', {'id': member.id}) }}" class='btn btn-danger btn-sm'>edit</a>
                 </td>
             </tr>
         {% else %}

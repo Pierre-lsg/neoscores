@@ -3,6 +3,8 @@
 {% block title %}Club index{% endblock %}
 
 {% block body %}
+    <script src="/script/table-sort.js"></script>
+
     <h1>Club index</h1>
 
     <table class="table">
@@ -11,7 +13,7 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Description</th>
-                <th>actions</th>
+                <th class="disable-sort">actions</th>
             </tr>
         </thead>
         <tbody>
@@ -21,10 +23,10 @@
                 <td>{{ club.name }}</td>
                 <td>{{ club.description }}</td>
                 <td>
-                    <a href="{{ path('app_club_show', {'id': club.id}) }}">show</a>
-                    <a href="{{ path('app_club_edit', {'id': club.id}) }}">edit</a>
-                    <a href="{{ path('app_club_teams_index', {'id': club.id}) }}">teams</a>
-                    <a href="{{ path('app_club_members_index', {'id': club.id}) }}">members</a>
+                    <a href="{{ path('app_club_show', {'id': club.id}) }}" class='btn btn-primary btn-sm'>show</a>
+                    <a href="{{ path('app_club_edit', {'id': club.id}) }}" class='btn btn-danger btn-sm'>edit</a>
+                    <a href="{{ path('app_club_teams_index', {'id': club.id}) }}" class='btn btn-primary btn-sm'>teams</a>
+                    <a href="{{ path('app_club_members_index', {'id': club.id}) }}" class='btn btn-primary btn-sm'>members</a>
                 </td>
             </tr>
         {% else %}
