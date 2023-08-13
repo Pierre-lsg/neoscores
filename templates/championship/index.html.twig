@@ -5,23 +5,9 @@
 {% block stylesheets %}
 {% endblock %}
 
-{% block javascripts %}
-    {{ encore_entry_script_tags('jstable') }}
-    <script>
-        let myTable = new JSTable("#championshipIndex", {
-            sortable: true,
-            columns: [
-                {
-                    select: 0,
-                    sortable: true,
-                    sort: "asc"
-                }
-            ]
-        });
-    </script>
-{% endblock %}
-
 {% block body %}
+    <script src="/script/table-sort.js"></script>
+
     <h1>Championship index</h1>
 
     <table class="table" id="championshipIndex">
@@ -32,7 +18,7 @@
                 <th>Description</th>
                 <th>Season</th>
                 <th>IsInternal</th>
-                <th>actions</th>
+                <th class="disable-sort">actions</th>
             </tr>
         </thead>
         <tbody>
