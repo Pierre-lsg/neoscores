@@ -30,8 +30,8 @@
                 <td>{{ championship.season }}</td>
                 <td>{{ championship.isInternal ? 'Yes' : 'No' }}</td>
                 <td>
-                    <a href="{{ path('app_championship_show', {'id': championship.id}) }}">show</a>
-                    <a href="{{ path('app_championship_edit', {'id': championship.id}) }}">edit</a>
+                    <a href="{{ path('app_championship_show', {'id': championship.id}) }}" class='btn btn-primary btn-sm'>show</a>
+                    <a href="{{ path('app_championship_edit', {'id': championship.id}) }}" class='btn btn-danger btn-sm'>edit</a>
                 </td>
             </tr>
         {% else %}
