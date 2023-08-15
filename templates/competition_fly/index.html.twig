@@ -2,17 +2,32 @@
 
 {% block title %}CompetitionFly index{% endblock %}
 
+{% block javascripts %}
+    <script src="/script/fancyTable.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#CompetitionFly").fancyTable({
+                sortColumn:0,
+                pagination: true,
+                perPage:10,
+                globalSearchExcludeColumns: [5],
+                globalSearch:true
+            });		
+        });
+    </script>
+{% endblock %}
+
 {% block body %}
     <h1>CompetitionFly index</h1>
 
-    <table class="table table-sort table-arrows remember-sort">
+    <table class="table" id="CompetitionFly">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Fly</th>
                 <th>Competition</th>
                 <th>Teams</th>
-                <th class="disable-sort">actions</th>
+                <th>actions</th>
             </tr>
         </thead>
         <tbody>

@@ -2,17 +2,30 @@
 
 {% block title %}GolfCourse index{% endblock %}
 
-{% block body %}
-    <script src="/script/table-sort.js"></script>
+{% block javascripts %}
+    <script src="/script/fancyTable.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#GolfCourse").fancyTable({
+                sortColumn:0,
+                pagination: true,
+                perPage:10,
+                globalSearchExcludeColumns: [3],
+                globalSearch:true
+            });		
+        });
+    </script>
+{% endblock %}
 
+{% block body %}
     <h1>GolfCourse index</h1>
 
-    <table class="table">
+    <table class="table" id="GolfCourse">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>NumberOfTargets</th>
-                <th class="disable-sort">actions</th>
+                <th>actions</th>
             </tr>
         </thead>
         <tbody>

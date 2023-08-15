@@ -2,10 +2,25 @@
 
 {% block title %}Spot index{% endblock %}
 
+{% block javascripts %}
+    <script src="/script/fancyTable.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#Spot").fancyTable({
+                sortColumn:0,
+                pagination: true,
+                perPage:10,
+                globalSearchExcludeColumns: [6],
+                globalSearch:true
+            });		
+        });
+    </script>
+{% endblock %}
+
 {% block body %}
     <h1>Spot index</h1>
 
-    <table class="table table-sort table-arrows remember-sort">
+    <table class="table" id="Spot">
         <thead>
             <tr>
                 <th>Id</th>
@@ -13,7 +28,7 @@
                 <th>Place</th>
                 <th>City</th>
                 <th>Country</th>
-                <th class="disable-sort">actions</th>
+                <th>actions</th>
             </tr>
         </thead>
         <tbody>

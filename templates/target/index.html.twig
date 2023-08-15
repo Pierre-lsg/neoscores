@@ -2,17 +2,32 @@
 
 {% block title %}Target index{% endblock %}
 
+{% block javascripts %}
+    <script src="/script/fancyTable.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#Target").fancyTable({
+                sortColumn:0,
+                pagination: true,
+                perPage:10,
+                globalSearchExcludeColumns: [5],
+                globalSearch:true
+            });		
+        });
+    </script>
+{% endblock %}
+
 {% block body %}
     <h1>Target index</h1>
 
-    <table class="table table-sort table-arrows remember-sort">
+    <table class="table" id="Target">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Name</th>
                 <th>Par</th>
                 <th>Rule</th>
-                <th class="disable-sort">actions</th>
+                <th>actions</th>
             </tr>
         </thead>
         <tbody>

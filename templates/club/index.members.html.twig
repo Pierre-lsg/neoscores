@@ -3,14 +3,27 @@
 {% block title %}Club index
 {% endblock %}
 
-{% block body %}
-    <script src="/script/table-sort.js"></script>
+{% block javascripts %}
+    <script src="/script/fancyTable.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#ClubRelative").fancyTable({
+                sortColumn:0,
+                pagination: true,
+                perPage:10,
+                globalSearchExcludeColumns: [6],
+                globalSearch:true
+            });		
+        });
+    </script>
+{% endblock %}
 
+{% block body %}
 	<h1>Club index</h1>
 
 	<div>{{ club.name }}</div>
 	<div>{{ club.description }}</div>
-	<table class="table">
+	<table class="table" id="ClubRelative">
 		<thead>
 			<tr>
 				<th>Id</th>
@@ -18,7 +31,7 @@
 				<th>Lastname</th>
 				<th>Nickname</th>
 				<th>Team</th>
-				<th class="disable-sort">actions</th>
+				<th>actions</th>
 			</tr>
 		</thead>
 		<tbody>

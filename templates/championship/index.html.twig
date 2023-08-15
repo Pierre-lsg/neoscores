@@ -5,12 +5,25 @@
 {% block stylesheets %}
 {% endblock %}
 
-{% block body %}
-    <script src="/script/table-sort.js"></script>
+{% block javascripts %}
+    <script src="/script/fancyTable.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#championship").fancyTable({
+                sortColumn:0,
+                pagination: true,
+                perPage:10,
+                globalSearchExcludeColumns: [5,6],
+                globalSearch:true
+            });		
+        });
+    </script>
+{% endblock %}
 
+{% block body %}
     <h1>Championship index</h1>
 
-    <table class="table" id="championshipIndex">
+    <table class="table" id="championship">
         <thead>
             <tr>
                 <th>Id</th>
@@ -18,7 +31,7 @@
                 <th>Description</th>
                 <th>Season</th>
                 <th>IsInternal</th>
-                <th class="disable-sort">actions</th>
+                <th>actions</th>
             </tr>
         </thead>
         <tbody>

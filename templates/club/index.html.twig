@@ -2,18 +2,31 @@
 
 {% block title %}Club index{% endblock %}
 
-{% block body %}
-    <script src="/script/table-sort.js"></script>
+{% block javascripts %}
+    <script src="/script/fancyTable.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#Club").fancyTable({
+                sortColumn:0,
+                pagination: true,
+                perPage:10,
+                globalSearchExcludeColumns: [4],
+                globalSearch:true
+            });		
+        });
+    </script>
+{% endblock %}
 
+{% block body %}
     <h1>Club index</h1>
 
-    <table class="table">
+    <table class="table" id="Club">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Name</th>
                 <th>Description</th>
-                <th class="disable-sort">actions</th>
+                <th>actions</th>
             </tr>
         </thead>
         <tbody>

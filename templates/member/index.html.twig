@@ -2,12 +2,25 @@
 
 {% block title %}Member index{% endblock %}
 
-{% block body %}
-    <script src="/script/table-sort.js"></script>
+{% block javascripts %}
+    <script src="/script/fancyTable.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#Member").fancyTable({
+                sortColumn:0,
+                pagination: true,
+                perPage:10,
+                globalSearchExcludeColumns: [6],
+                globalSearch:true
+            });		
+        });
+    </script>
+{% endblock %}
 
+{% block body %}
     <h1>Member index</h1>
 
-    <table class="table table-sort table-arrows remember-sort">
+    <table class="table" id="Member">
         <thead>
             <tr>
                 <th>Id</th>
@@ -15,7 +28,7 @@
                 <th>LastName</th>
                 <th>NickName</th>
                 <th>Club</th>
-                <th class="disable-sort">actions</th>
+                <th>actions</th>
             </tr>
         </thead>
         <tbody>
