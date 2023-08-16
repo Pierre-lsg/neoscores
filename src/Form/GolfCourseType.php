@@ -20,13 +20,14 @@ class GolfCourseType extends AbstractType
         // Get golf course to update
         $gc = ($options['data']);
 
-        $spotId = $gc->getSpot()->getId();
+//        $spotId = $gc->getSpot()->getId();
 
         $builder
             ->add('name')
             ->add('numberOfTargets')
             ->add('spot')
-            ->add('targets', EntityType::class, [
+            ->add('targets')
+/*             ->add('targets', EntityType::class, [
                 'class' => Target::class,
                 'multiple' => true,
                 'query_builder' => function (TargetRepository $tr) use($spotId) : QueryBuilder {
@@ -35,7 +36,7 @@ class GolfCourseType extends AbstractType
                         ->setParameter('spot', $spotId)
                         ->orderBy('t.name', 'ASC');
                 }
-                ])
+                ]) */
             ->add('isCompleted', CheckboxType::class, [
                 'disabled' => true,
             ])
