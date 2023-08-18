@@ -4,14 +4,14 @@
 
 {% block body %}
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
+	{% if is_granted('ROLE_ADMIN') %}
     List of actors objects :
     <ul>
         <li><a href="{{ path('app_club_index') }}">Club</a></li>
         <li><a href="{{ path('app_team_index') }}">Team</a></li>
         <li><a href="{{ path('app_member_index') }}">Member</a></li>
     </ul>
+	{% endif %}
 
     List of championships objects :
     <ul>

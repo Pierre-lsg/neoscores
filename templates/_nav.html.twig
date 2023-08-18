@@ -10,56 +10,58 @@
 				<li class="nav-item">
 					<a class="nav-link active" aria-current="page" href="{{ path('app_home')}}">Home</a>
 				</li>
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Actors</a>
-					<ul class="dropdown-menu">
-						<li>
-							<a class="dropdown-item" href="{{ path('app_club_index')}}">Clubs</a>
-						</li>
-						<li>
-							<a class="dropdown-item" href="{{ path('app_team_index')}}">Teams</a>
-						</li>
-						<li>
-							<a class="dropdown-item" href="{{ path('app_member_index')}}">Members</a>
-						</li>
-					</ul>
-				</li>
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Parameters</a>
-					<ul class="dropdown-menu">
-						<li>
-							<a class="dropdown-item" href="{{ path('app_rule_index')}}">Rule</a>
-						</li>
-						<li>
-							<a class="dropdown-item" href="{{ path('app_target_index')}}">Targets</a>
-						</li>
-						<li>
-							<a class="dropdown-item" href="{{ path('app_spot_index')}}">Spots</a>
-						</li>
-					</ul>
-				</li>
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Championship</a>
-					<ul class="dropdown-menu">
-						<li>
-							<a class="dropdown-item" href="{{ path('app_championship_index')}}">Championship</a>
-						</li>
-						<li>
-							<a class="dropdown-item" href="{{ path('app_competition_index')}}">Competition</a>
-						</li>
-						<li>
-							<a class="dropdown-item" href="{{ path('app_golf_course_index')}}">Golf course</a>
-						</li>
-					</ul>
-				</li>
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Event</a>
-					<ul class="dropdown-menu">
-						<li>
-							<a class="dropdown-item" href="{{ path('app_competition_fly_index')}}">Flight</a>
-						</li>
-					</ul>
-				</li>
+				{% if is_granted('ROLE_USER') %}
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Actors</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a class="dropdown-item" href="{{ path('app_club_index')}}">Clubs</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{ path('app_team_index')}}">Teams</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{ path('app_member_index')}}">Members</a>
+							</li>
+						</ul>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Parameters</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a class="dropdown-item" href="{{ path('app_rule_index')}}">Rule</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{ path('app_target_index')}}">Targets</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{ path('app_spot_index')}}">Spots</a>
+							</li>
+						</ul>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Championship</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a class="dropdown-item" href="{{ path('app_championship_index')}}">Championship</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{ path('app_competition_index')}}">Competition</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{ path('app_golf_course_index')}}">Golf course</a>
+							</li>
+						</ul>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Event</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a class="dropdown-item" href="{{ path('app_competition_fly_index')}}">Flight</a>
+							</li>
+						</ul>
+					</li>
+				{% endif %}
 				{% if is_granted('ROLE_USER') %}
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
