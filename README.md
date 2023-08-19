@@ -8,7 +8,8 @@ The manager of a competition can :
 - select or create the teams and the player,
 - calculate the flights before the launch of the competition,
 - enter the scores,
-- calculate the results for the competition and the championship\
+- calculate the results for the competition and the championship
+
 The application has been create like an old PHP app : no framework, mix of php/html/JS, ...
 So I am the only one who can support it.\ 
 I decided to learn good framework before rewriting all.\
