@@ -9,6 +9,7 @@ The manager of a competition can :
 - calculate the flights before the launch of the competition,
 - enter the scores,
 - calculate the results for the competition and the championship
+
 The application has been create like an old PHP app : no framework, mix of php/html/JS, ...
 So I am the only one who can support it. 
 I decided to learn good framework before rewriting all.
@@ -21,4 +22,4 @@ I hope later integrate it in a docker container.
 But first, I have to
 ## Some more documentations
 In docs repertory :
-- [list of roles]()
+- [list of roles](https://github.com/Pierre-lsg/neoscores/blob/main/docs/list_role.md)
